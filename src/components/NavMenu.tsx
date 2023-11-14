@@ -1,53 +1,91 @@
 "use client";
 
+import * as React from "react";
+import Link from "next/link";
+
 import {
     NavigationMenu,
     NavigationMenuContent,
-    NavigationMenuIndicator,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-    NavigationMenuViewport,
+    navigationMenuTriggerStyle,
 } from "fndtn/components/ui/navigation-menu";
+import { cn } from "fndtn/lib/utils";
 import { INavMenuItem } from "fndtn/interfaces/INavMenuItem";
 
-export default function NavMenu(props: {
-    className?: string;
-    items: INavMenuItem[];
-}) {
-    const { className, items } = props;
+export default function NavigationMenuDemo(props: { items: INavMenuItem[] }) {
+    const { items } = props;
     return (
-        <NavigationMenu className={`${className ?? ""}`}>
-            <NavigationMenuList>
-                {items?.length ? (
-                    items?.map((i, k) => {
-                        return (
-                            <NavigationMenuItem key={i.trigger + k}>
-                                <NavigationMenuTrigger>
-                                    {i.trigger}
-                                </NavigationMenuTrigger>
-                                {i.content.map((content, keyContent) => {
-                                    return (
-                                        <NavigationMenuContent
-                                            key={content.display + keyContent}
-                                        >
-                                            <NavigationMenuLink
-                                                href={content.href}
-                                                target={content.target}
+        <NavigationMenu>
+            {items.map((item, keyItem) => {
+                return (
+                    <NavigationMenuList key={item.trigger + keyItem}>
+                        <NavigationMenuItem>
+                            <NavigationMenuTrigger>
+                                {item.trigger}
+                            </NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                                <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-2 lg:w-[600px] ">
+                                    {item.content.map(
+                                        (contentItem, contentItemKey) => (
+                                            <ListItem
+                                                key={
+                                                    contentItem.link.display +
+                                                    contentItemKey
+                                                }
+                                                title={contentItem.link.display}
+                                                href={contentItem.link.href}
+                                                target={contentItem.link.target}
                                             >
-                                                {content.display}
-                                            </NavigationMenuLink>
-                                        </NavigationMenuContent>
-                                    );
-                                })}
-                            </NavigationMenuItem>
-                        );
-                    })
-                ) : (
-                    <div>no items found on the nav menu</div>
-                )}
-            </NavigationMenuList>
+                                                {contentItem.description}
+                                            </ListItem>
+                                        )
+                                    )}
+                                </ul>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                            <Link href="/help" legacyBehavior passHref>
+                                <NavigationMenuLink
+                                    className={navigationMenuTriggerStyle()}
+                                >
+                                    Help
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                    </NavigationMenuList>
+                );
+            })}
         </NavigationMenu>
     );
 }
+
+const ListItem = React.forwardRef<
+    React.ElementRef<"a">,
+    React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+    return (
+        <li>
+            <NavigationMenuLink asChild>
+                <a
+                    ref={ref}
+                    className={cn(
+                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-accent-foreground",
+                        className
+                    )}
+                    {...props}
+                >
+                    <div className="text-sm font-medium leading-none">
+                        {title}
+                    </div>
+                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        {children}
+                    </p>
+                </a>
+            </NavigationMenuLink>
+        </li>
+    );
+});
+ListItem.displayName = "ListItem";

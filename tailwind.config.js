@@ -8,6 +8,20 @@ module.exports = {
     './src/**/*.{ts,tsx}',
 	],
   theme: {
+    colors:{
+      dark:{
+        background:"#0F0F0F",
+        foreground:"#232D3F",
+        accent:"#005B41",
+        accent2:"#008170"
+      },
+      light:{
+        background:"#0C356A",
+        foreground:"#279EFF",
+        accent:"#40F8FF",
+        accent2:"#D5FFD0"
+      }
+    },
     container: {
       center: true,
       padding: "2rem",
