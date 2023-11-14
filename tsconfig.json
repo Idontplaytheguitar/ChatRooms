@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "fndtn/*": ["./src/*"]
+      "fndtn/*": ["./src/*"],
+      "cms/*": ["./cms/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
