@@ -16,10 +16,10 @@ import { cn } from "fndtn/lib/utils";
 import { INavMenuItem } from "fndtn/interfaces/INavMenuItem";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
-export default function NavigationMenuDemo(props: { items: INavMenuItem[] }) {
-    const { items } = props;
+export default function NavMenu(props: { items: INavMenuItem[]; className?:string }) {
+    const { items, className } = props;
     return (
-        <NavigationMenu >
+        <NavigationMenu className={`w-full ${className || ""}`}>
             {items.map((item, keyItem) => {
                 return (
                     <NavigationMenuList key={item.trigger + keyItem}>
