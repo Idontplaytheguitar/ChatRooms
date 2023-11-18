@@ -14,11 +14,12 @@ import {
 } from "fndtn/components/ui/navigation-menu";
 import { cn } from "fndtn/lib/utils";
 import { INavMenuItem } from "fndtn/interfaces/INavMenuItem";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export default function NavigationMenuDemo(props: { items: INavMenuItem[] }) {
     const { items } = props;
     return (
-        <NavigationMenu>
+        <NavigationMenu >
             {items.map((item, keyItem) => {
                 return (
                     <NavigationMenuList key={item.trigger + keyItem}>
@@ -55,6 +56,9 @@ export default function NavigationMenuDemo(props: { items: INavMenuItem[] }) {
                                 </NavigationMenuLink>
                             </Link>
                         </NavigationMenuItem>
+                        <NavigationMenuItem className="border-l border-dotted">
+                            <ThemeSwitcher/>
+                        </NavigationMenuItem>
                     </NavigationMenuList>
                 );
             })}
@@ -72,7 +76,7 @@ const ListItem = React.forwardRef<
                 <a
                     ref={ref}
                     className={cn(
-                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-accent-foreground",
+                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent dark:hover:text-dark-accent hover:text-light-accent focus:bg-accent focus:text-accent-foreground bg-opacity-75",
                         className
                     )}
                     {...props}

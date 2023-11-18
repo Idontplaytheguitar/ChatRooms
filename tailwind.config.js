@@ -13,13 +13,15 @@ module.exports = {
         background:"#0F0F0F",
         foreground:"#232D3F",
         accent:"#005B41",
-        accent2:"#008170"
+        accent2:"#008170",
+        text:"#FFFFFF"
       },
       light:{
         background:"#0C356A",
         foreground:"#279EFF",
         accent:"#40F8FF",
-        accent2:"#D5FFD0"
+        accent2:"#D5FFD0",
+        text: "#000000"
       }
     },
     container: {
