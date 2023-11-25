@@ -1,16 +1,11 @@
-import NavMenu from "fndtn/components/NavMenu";
-import { navMenuItems } from "cms/NavMenu";
-import FullNav from "fndtn/components/FullNav";
+import TypographyH1 from "fndtn/components/typographyH1";
+import TypographyH2 from "fndtn/components/typographyH2";
 
 export default function NotFound() {
-    return (
-        <div >
-            <h1 className="mx-auto mt-32 my-5 self-center text-4xl font-extrabold tracking-tight lg:text-5xl">
-                404 Error
-            </h1>
-            <h2 className="border-b pb-2 text-3xl font-semibold tracking-tight">
-                Page not found
-            </h2>
-        </div>
-    );
+  return (
+    <div>
+      <TypographyH1>Error 404</TypographyH1>
+      <TypographyH2>Page not found!</TypographyH2>
+    </div>
+  );
 }

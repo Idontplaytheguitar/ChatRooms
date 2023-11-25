@@ -10,7 +10,7 @@ export const navMenuItems: INavMenuItem[] = [
             {
                 link: {
                     display: "Create new room",
-                    href: "/CreateRoom",
+                    href: "/createRoom",
                     target: "_self",
                 },
                 description: "Create a room others can join"
