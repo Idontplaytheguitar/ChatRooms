@@ -1,23 +1,29 @@
-import { ZodSchemaCreate } from "fndtn/interfaces/ZodSchemaCreate";
-
 export const formRoom: formType[] = [
   {
     type: "Input",
     name: "Name",
     description: "This is the name of the room",
     placeholder: "Enter the name of the room...",
+    max: 25,
+    maxMessage:
+      "Room name needs to be less than 25 characters",
+    min: 2,
+    minMessage:
+      "Room name needs to be longer than 2 characters",
   },
   {
     type: "Switch",
     name: "ChatPrivate",
     description:
       "Is the chat going to be visible only for registered users?",
+    defaultValue: false,
   },
   {
     type: "Switch",
     name: "Listed",
     description:
       "Is the chatroom going to be listed in the rooms list?",
+    defaultValue: true,
   },
   {
     type: "Select",
@@ -32,28 +38,6 @@ export const formRoom: formType[] = [
       "7 days",
       "30 days",
     ],
+    defaultValue: "1 day",
   },
 ];
-
-export const formRoomSchemaCreator: ZodSchemaCreate[] =
-  [
-    {
-      name: "Name",
-      value: "string",
-      restrictions: {
-        messageMax:
-          "Name of the room has to be less than 25 characters",
-        messageMin:
-          "Name of the room has to be more than 2 characters",
-        max: 25,
-        min: 2,
-      },
-    },
-    {
-        name: 'Listed',
-        value: 'boolean',
-    },
-    {
-        name
-    }
-  ];

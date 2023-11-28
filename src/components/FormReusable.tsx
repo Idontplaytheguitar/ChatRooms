@@ -25,29 +25,18 @@ import {
   SelectValue,
 } from "fndtn/components/ui/select";
 import { Switch } from "./ui/switch";
-import { generateZodObject } from "fndtn/app/formUtils/roomCreate";
-import { ZodSchemaCreate } from "fndtn/interfaces/ZodSchemaCreate";
+import { generateZodObject } from "fndtn/app/formUtils/createZodObject";
 
 export function CreateForm(props: {
-  formSchemaOptions: ZodSchemaCreate[];
-  defaultValues: any;
-  onSubmit: (values: z.ZodObjectDef) => void;
+  onSubmit: (values: any) => void;
   items: formType[];
 }) {
-  const {
-    formSchemaOptions,
-    defaultValues,
-    onSubmit,
-    items,
-  } = props;
+  const { onSubmit, items } = props;
 
-  const formSchema = generateZodObject(
-    formSchemaOptions
-  );
-  const form = useForm<
-    z.infer<typeof formSchema>
-  >({
-    resolver: zodResolver(formSchema),
+  const { schema, defaultValues } =
+    generateZodObject(items);
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
     defaultValues: {
       ...defaultValues,
     },
@@ -81,8 +70,8 @@ export function CreateForm(props: {
                     <SelectTrigger className="w-[180px]">
                       <SelectValue
                         placeholder={
-                          "Select an option" &&
-                          formItem.placeholder
+                          formItem.placeholder ||
+                          "Select an option"
                         }
                       />
                     </SelectTrigger>
@@ -112,6 +101,7 @@ export function CreateForm(props: {
               if (formItem.type === "Switch") {
                 return (
                   <Switch
+                    className="flex flex-row"
                     checked={field.value}
                     onCheckedChange={
                       field.onChange
@@ -146,7 +136,9 @@ export function CreateForm(props: {
         ) : (
           <h1>No items found. Fix this, dev</h1>
         )}
-        <Button type="submit">Submit</Button>
+        <Button className="w-full" variant="outline" type="submit">
+          Submit
+        </Button>
       </form>
     </Form>
   );

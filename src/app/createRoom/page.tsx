@@ -1,24 +1,16 @@
+"use client";
+
 import { CreateForm } from "fndtn/components/FormReusable";
-import { CreateRoomForm } from "./components/FormCreate";
 import { onSubmit } from "../formUtils/roomCreate";
 import { formRoom } from "cms/Forms";
 
 export default function CreateRoom() {
-    
-    return (
-        <div>
-            <CreateForm 
-            formSchemaOptions={roomCreateSchema}
-            defaultValues={{
-                name: '',
-                chatPrivate: false,
-                listed: true,
-                duration: '1 day'
-            }}
-            onSubmit={onSubmit}
-            items={formRoom}
-            />
-        </div>
-    );
+  return (
+    <div className="bg-light-complimentary/50 dark:bg-dark-complimentary/50 p-10 rounded-md">
+      <CreateForm
+        onSubmit={onSubmit}
+        items={formRoom}
+      />
+    </div>
+  );
 }
-
