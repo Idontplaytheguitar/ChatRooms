@@ -19,9 +19,9 @@ module.exports = {
       },
       light: {
         background: "#1b89b3",
-        foreground: "#279EFF",
-        accent: "#c9f0ff",
-        accent2: "#ff8b27",
+        foreground: "#136d7d",
+        accent: "#c9f7ff",
+        accent2: "#93eeff",
         complimentary:"#FFFFFF",
         text: "#000000",
       },
