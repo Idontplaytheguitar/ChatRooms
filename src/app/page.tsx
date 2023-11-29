@@ -1,9 +1,5 @@
 import Auth from "fndtn/components/Auth";
 
 export default function Home() {
-    return (
-        <div>
-            <Auth/>
-        </div>
-    );
+  return <div></div>;
 }

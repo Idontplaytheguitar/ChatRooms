@@ -5,8 +5,8 @@ import Auth from "./Auth";
 
 export default function FullNav() {
   return (
-    <div className="p-5 sticky top-0 left-0 flex flex-row align-middle items-center w-full">
-      <div className="flex flex-row gap-8 items-center h-full justify-center">
+    <div className="p-5 sticky top-0 left-0 flex flex-row align-middle items-center text-center object-center place-items-center h-full w-full">
+      <div className="flex flex-row gap-2 items-center h-full justify-center">
         <NavMenu
           className="mr-auto self-center place-self-center justify-self-center"
           items={navMenuItems}
