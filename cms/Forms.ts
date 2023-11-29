@@ -76,3 +76,31 @@ export const formRegister: formType[] = [
       "Password needs to be longer than 6 characters",
   },
 ];
+
+export const formLogIn: formType[] = [
+  {
+    type: "Input",
+    name: "Username",
+    description:
+      "Enter your username or your email",
+    placeholder: "Enter the username...",
+    max: 30,
+    maxMessage:
+      "Username/Email needs to be less than 25 characters",
+    min: 2,
+    minMessage:
+      "Username/Email needs to be longer than 2 characters",
+  },
+  {
+    type: "Input",
+    name: "Password",
+    description: "Your password",
+    placeholder: "Enter your Password...",
+    max: 25,
+    maxMessage:
+      "Password needs to be less than 25 characters",
+    min: 6,
+    minMessage:
+      "Password needs to be longer than 6 characters",
+  },
+];

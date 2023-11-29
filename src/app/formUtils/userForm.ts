@@ -5,3 +5,9 @@ export const onSubmitRegister = (
 ) => {
   console.log(values);
 };
+
+export const onSubmitLogIn = (
+    values: z.ZodObjectDef
+  ) => {
+    console.log(values);
+  };

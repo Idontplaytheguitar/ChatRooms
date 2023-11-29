@@ -6,13 +6,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "fndtn/components/ui/dialog";
+import React from "react";
 
-export default function DialogReusable(props: {
-  trigger: string | React.ReactNode;
-  contentTitle: string;
+export interface IReusableDialog {
+  contentTitle?: string;
   contentDescription?: string;
+}
+interface ReusableDialogProps
+  extends IReusableDialog {
+  trigger: string | React.ReactNode;
   children?: React.ReactNode;
-}) {
+}
+export default function DialogReusable(
+  props: ReusableDialogProps
+) {
   const {
     contentDescription,
     contentTitle,
@@ -24,9 +31,11 @@ export default function DialogReusable(props: {
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>
-            {contentTitle}
-          </DialogTitle>
+          {contentTitle ? (
+            <DialogTitle>
+              {contentTitle}
+            </DialogTitle>
+          ) : null}
           {contentDescription ? (
             <DialogDescription>
               {contentDescription}

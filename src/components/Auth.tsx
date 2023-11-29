@@ -1,11 +1,13 @@
 import axios from "axios";
 import { headers } from "next/headers";
 import DialogReusable from "./DialogReusable";
-import { loggedOut } from "cms/LoggedOut";
+import { loggedOutDialog } from "cms/Dialogs";
 import { FormReusable } from "./FormReusable";
 import { formRegister } from "cms/Forms";
 import { onSubmitRegister } from "fndtn/app/formUtils/userForm";
 import RegisterForm from "./RegisterForm";
+import TabsReusable from "./TabsReusable";
+import { TabsLoginRegister } from "cms/Tabs";
 
 export default async function Auth() {
   let loggedIn = false;
@@ -25,7 +27,9 @@ export default async function Auth() {
         "LOGGED IN"
       ) : (
         <DialogReusable
-          contentTitle={loggedOut.dialogTitle}
+          contentTitle={
+            loggedOutDialog.contentTitle
+          }
           trigger={
             <svg
               width="18"
@@ -41,10 +45,12 @@ export default async function Auth() {
             </svg>
           }
           contentDescription={
-            loggedOut.dialogDescription
+            loggedOutDialog.contentDescription
           }
         >
-          <RegisterForm />
+          <TabsReusable
+            items={TabsLoginRegister}
+          />
         </DialogReusable>
       )}
     </div>
