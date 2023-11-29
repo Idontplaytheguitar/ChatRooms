@@ -3,16 +3,18 @@ import { headers } from "next/headers";
 import DialogReusable from "./DialogReusable";
 import { loggedOut } from "cms/LoggedOut";
 import { FormReusable } from "./FormReusable";
+import { formRegister } from "cms/Forms";
+import { onSubmitRegister } from "fndtn/app/formUtils/userForm";
+import RegisterForm from "./RegisterForm";
 
 export default async function Auth() {
   let loggedIn = false;
   try {
     loggedIn = (
       await axios.get(
-        "http://localhost:3001/profile",
+        "http://localhost:3001/profile"
       )
     ).data;
-    
   } catch (e) {
     console.log(e);
   }
@@ -42,7 +44,7 @@ export default async function Auth() {
             loggedOut.dialogDescription
           }
         >
-          <FormReusable items={}/>
+          <RegisterForm />
         </DialogReusable>
       )}
     </div>

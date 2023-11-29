@@ -41,3 +41,38 @@ export const formRoom: formType[] = [
     defaultValue: "1 day",
   },
 ];
+
+export const formRegister: formType[] = [
+  {
+    type: "Input",
+    name: "Email",
+    description:
+      "Use a valid email since we will use it for verification",
+    placeholder: "Enter your email...",
+  },
+  {
+    type: "Input",
+    name: "Username",
+    description:
+      "This is name that will be displayed to other users",
+    placeholder: "Enter the username...",
+    max: 25,
+    maxMessage:
+      "Username needs to be less than 25 characters",
+    min: 2,
+    minMessage:
+      "Username needs to be longer than 2 characters",
+  },
+  {
+    type: "Input",
+    name: "Password",
+    description: "Choose a strong password",
+    placeholder: "Enter the Password...",
+    max: 25,
+    maxMessage:
+      "Password needs to be less than 25 characters",
+    min: 6,
+    minMessage:
+      "Password needs to be longer than 6 characters",
+  },
+];

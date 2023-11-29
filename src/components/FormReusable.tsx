@@ -54,8 +54,18 @@ export function FormReusable(props: {
               field: ControllerRenderProps
             ) => {
               if (formItem.type === "Input") {
+                const type = () => {
+                  if (
+                    formItem.name === "Password"
+                  )
+                    return "password";
+                  if (formItem.name === "Email")
+                    return "email";
+                  return "text";
+                };
                 return (
                   <Input
+                    type={type()}
                     placeholder={
                       formItem.name &&
                       formItem.placeholder
@@ -136,7 +146,11 @@ export function FormReusable(props: {
         ) : (
           <h1>No items found. Fix this, dev</h1>
         )}
-        <Button className="w-full" variant="outline" type="submit">
+        <Button
+          className="w-full"
+          variant="outline"
+          type="submit"
+        >
           Submit
         </Button>
       </form>
