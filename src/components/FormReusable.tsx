@@ -27,7 +27,7 @@ import {
 import { Switch } from "./ui/switch";
 import { generateZodObject } from "fndtn/app/formUtils/createZodObject";
 
-export function CreateForm(props: {
+export function FormReusable(props: {
   onSubmit: (values: any) => void;
   items: formType[];
 }) {
