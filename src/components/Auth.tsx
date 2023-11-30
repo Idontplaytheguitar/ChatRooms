@@ -13,9 +13,9 @@ export default async function Auth() {
       )
     ).data;
   } catch (e) {
-    console.log(e);
+   // console.log(e);
   }
-  console.log(loggedIn);
+  // console.log(loggedIn);
   return (
     <div>
       {loggedIn ? (

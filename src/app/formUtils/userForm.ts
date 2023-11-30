@@ -1,5 +1,4 @@
 import axios from "axios";
-import { cookies } from "next/headers";
 import * as z from "zod";
 
 export const onSubmitRegister = async (
@@ -13,32 +12,15 @@ export const onSubmitLogIn = async (values: {
   Password: string;
 }) => {
   try {
-    // check the match
     const r = await axios.post(
-      "http://localhost:3001/auth",
+      "api/authorization",
       {
         username: values.Username,
         password: values.Password,
       }
     );
-    if (r.status === 200) {
-      try {
-        // if it matches, log in
-        const r = await axios.post(
-          "http://localhost:3001/auth/login",
-          {
-            username: values.Username,
-            password: values.Password,
-          }
-        );
-        cookies().set(
-          "access_token",
-          r.data.access_token
-        );
-      } catch (e) {
-        console.log(e);
-      }
-    }
+
+    return r;
   } catch (e) {
     console.log(e);
   }
