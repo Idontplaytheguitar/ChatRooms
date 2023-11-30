@@ -15,7 +15,7 @@ const buttonVariants = cva(
         default:
           "bg-stone-900 text-stone-50 hover:bg-stone-900/90 dark:bg-stone-50 dark:text-stone-900 dark:hover:bg-stone-50/90 text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent",
         destructive:
-          "bg-red-500 text-stone-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-stone-50 dark:hover:bg-red-900/90",
+          "bg-error/70 hover:text-light-accent dark:hover:text-dark-accent",
         outline:
           "border border-stone-200 bg-white hover:bg-stone-100 hover:text-stone-900 dark:border-stone-800 dark:bg-stone-950 dark:hover:bg-stone-800 dark:hover:text-stone-50  hover:bg-light-accent2/60 dark:hover:bg-dark-accent2/60",
         secondary:

@@ -3,23 +3,58 @@ import DialogReusable from "./DialogReusable";
 import { loggedOutDialog } from "cms/Dialogs";
 import TabsReusable from "./TabsReusable";
 import { TabsLoginRegister } from "cms/Tabs";
+import { cookies } from "next/headers";
+import {
+  Avatar,
+  AvatarFallback,
+} from "./ui/avatar";
+import { Button } from "./ui/button";
+import LogOut from "./LogOut";
 
 export default async function Auth() {
+  const cookiesStore = cookies();
+  const accessToken = cookiesStore.get(
+    "access_token"
+  )?.value;
   let loggedIn = false;
+  let data;
   try {
-    loggedIn = (
+    loggedIn = false;
+    data = (
       await axios.get(
-        "http://localhost:3001/profile"
+        `${process.env.API_BASE_URL}/profile`,
+        {
+          headers: {
+            authorization:
+              "Bearer " + accessToken,
+          },
+        }
       )
     ).data;
+    loggedIn = true;
   } catch (e) {
-   // console.log(e);
+    loggedIn = false;
+    console.log(e);
   }
-  // console.log(loggedIn);
+
   return (
     <div>
       {loggedIn ? (
-        "LOGGED IN"
+        <DialogReusable
+          contentTitle={`Logged in as ${data.username}`}
+          contentDescription="This are your user settings"
+          trigger={
+            <Avatar>
+              <AvatarFallback className="bg-light-foreground dark:bg-dark-foreground hover:cursor-pointer">
+                {(
+                  data.username[0] as string
+                ).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+          }
+        >
+       <LogOut/>
+        </DialogReusable>
       ) : (
         <DialogReusable
           contentTitle={

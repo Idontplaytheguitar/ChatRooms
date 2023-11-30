@@ -5,15 +5,14 @@ export async function POST(request: Request) {
   const body = await request.json();
   try {
     const res = await axios.post(
-      "http://localhost:3001/auth",
+      `${process.env.API_BASE_URL}/auth`,
       body
     );
     if (res.status === 200) {
       const res2 = await axios.post(
-        "http://localhost:3001/auth/login",
+       `${process.env.API_BASE_URL}/auth/login`,
         body
       );
-      console.log(res2);
       const response = NextResponse.json(
         { data: res2.data },
         { status: res2.status }

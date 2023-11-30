@@ -7,7 +7,7 @@ export default async function Rooms() {
   let rooms: string[] = [];
   try {
     const resp = await axios.get(
-      "http://localhost:3001/rooms"
+      `${process.env.API_BASE_URL}/rooms`
     );
     rooms = resp.data;
   } catch (e) {

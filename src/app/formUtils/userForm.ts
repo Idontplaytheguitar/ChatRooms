@@ -11,17 +11,11 @@ export const onSubmitLogIn = async (values: {
   Username: string;
   Password: string;
 }) => {
-  try {
-    const r = await axios.post(
-      "api/authorization",
-      {
-        username: values.Username,
-        password: values.Password,
-      }
-    );
-
-    return r;
-  } catch (e) {
-    console.log(e);
-  }
+  axios
+    .post("api/authorization/login", {
+      username: values.Username,
+      password: values.Password,
+    })
+    .then(() => window.location.reload())
+    .catch((e) => console.error(e));
 };
