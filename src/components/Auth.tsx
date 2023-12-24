@@ -1,41 +1,16 @@
-import axios from "axios";
 import DialogReusable from "./DialogReusable";
 import { loggedOutDialog } from "cms/Dialogs";
 import TabsReusable from "./TabsReusable";
 import { TabsLoginRegister } from "cms/Tabs";
-import { cookies } from "next/headers";
 import {
   Avatar,
   AvatarFallback,
 } from "./ui/avatar";
-import { Button } from "./ui/button";
 import LogOut from "./LogOut";
+import { profileGet } from "fndtn/utils/Auth";
 
 export default async function Auth() {
-  const cookiesStore = cookies();
-  const accessToken = cookiesStore.get(
-    "access_token"
-  )?.value;
-  let loggedIn = false;
-  let data;
-  try {
-    loggedIn = false;
-    data = (
-      await axios.get(
-        `${process.env.API_BASE_URL}/profile`,
-        {
-          headers: {
-            authorization:
-              "Bearer " + accessToken,
-          },
-        }
-      )
-    ).data;
-    loggedIn = true;
-  } catch (e) {
-    loggedIn = false;
-    console.log(e);
-  }
+  const { loggedIn, data } = await profileGet();
 
   return (
     <div>
@@ -53,7 +28,7 @@ export default async function Auth() {
             </Avatar>
           }
         >
-       <LogOut/>
+          <LogOut />
         </DialogReusable>
       ) : (
         <DialogReusable
@@ -70,9 +45,6 @@ export default async function Auth() {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
                 d="M7 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-2 3h4a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"
               />
             </svg>
