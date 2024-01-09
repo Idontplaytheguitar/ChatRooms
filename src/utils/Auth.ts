@@ -31,7 +31,7 @@ export const profileGet = async (): Promise<{
     };
   } catch (e) {
     loggedIn = false;
-    console.log(e);
+    // console.log(e);
     return { loggedIn, data };
   }
 };
