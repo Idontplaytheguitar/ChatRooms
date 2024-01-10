@@ -1,6 +1,6 @@
 'use client'
 
-import { onSubmitLogIn } from "fndtn/app/formUtils/userForm"
+import { onSubmitLogIn } from "fndtn/utils/authenticationFrontFunctions"
 import { FormReusable } from "./FormReusable"
 import { formLogIn } from "cms/Forms"
 
