@@ -13,7 +13,6 @@ export async function POST(request: Request) {
           "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly",
       },
     });
-    console.log(res.status, "responsee");
     return response;
   } catch (e) {
     const error = JSON.parse(JSON.stringify(e));

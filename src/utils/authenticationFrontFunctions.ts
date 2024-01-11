@@ -32,7 +32,6 @@ export const onSubmitLogIn = async (values: {
       password: values.Password,
     })
     .then(() => {
-      console.log('adasdasda')
       window.location.reload()})
     .catch((e) => console.error(e));
 };
